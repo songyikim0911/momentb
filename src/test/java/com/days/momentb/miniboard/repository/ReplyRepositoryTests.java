@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -49,6 +50,15 @@ public class ReplyRepositoryTests {
         List<Reply> replyList
                 =replyRepository.findReplyByMiniBoard_MbNoOrderByMbReNo(mbNo);
         replyList.forEach(reply -> log.info(reply));
+    }
+
+    @Transactional
+    @Test
+    public void testRead(){
+        Long rn = 1L;
+        Reply reply = replyRepository.findById(rn).get();
+        log.info(reply);
+        log.info(reply.getMiniBoard());
     }
 
 }

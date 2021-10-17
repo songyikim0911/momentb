@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface MiniBoardRepository extends JpaRepository<MiniBoard, Long>, MiniBoardSearch {
 
 
-    @Query("select m, count(r) from MiniBoard m left join Reply r on r.miniBoard = m group by m")
+    @Query("select b.mbNo, b.mbTitle, b.mbWriter, b.mbRegDate, count(r) from MiniBoard b left join Reply r on r.miniBoard = b group by b")
     Page<Object[]> ex1(Pageable pageable);
 
 }

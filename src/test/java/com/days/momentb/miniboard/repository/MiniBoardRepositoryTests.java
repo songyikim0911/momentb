@@ -63,4 +63,18 @@ public class MiniBoardRepositoryTests {
 
     }
 
+    @Test
+    public void testSearchWithReplyCount(){
+        char[] typeArr = {'T'};
+        String keyword = "10";
+
+        Pageable pageable = PageRequest.of(0,10,Sort.by("mbNo").descending());
+
+        Page<Object[]> result = miniBoardRepository.searchWithReplyCount(typeArr, keyword, pageable);
+
+        result.get().forEach(arr->
+                log.info(Arrays.toString(arr)));
+
+    }
+
 }
