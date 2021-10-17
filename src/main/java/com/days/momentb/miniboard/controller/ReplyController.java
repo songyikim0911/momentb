@@ -8,10 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,11 +18,21 @@ public class ReplyController {
 
     private final ReplyService replyService;
 
-    @GetMapping("/list/{mbno}")
-    public PageResponseDTO<ReplyDTO> getListOfBoard(@PathVariable("mbno") Long mbNo, PageRequestDTO pageRequestDTO){
+    @GetMapping("/list/{mbNo}")
+    public PageResponseDTO<ReplyDTO> getListOfBoard(@PathVariable("mbNo") Long mbNo, PageRequestDTO pageRequestDTO){
 
         return replyService.getListOfBoard(mbNo, pageRequestDTO);
 
+    }
+
+    @PostMapping("")
+    public PageResponseDTO<ReplyDTO> register(@RequestBody ReplyDTO replyDTO){
+
+        replyService.register(replyDTO);
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(-1).build();
+
+        return replyService.getListOfBoard(replyDTO.getMbNo(), pageRequestDTO);
     }
 
 }

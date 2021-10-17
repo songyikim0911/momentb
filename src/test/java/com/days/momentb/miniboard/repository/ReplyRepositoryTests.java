@@ -77,6 +77,24 @@ public class ReplyRepositoryTests {
     public void testCountOfBoard(){
         Long mbNo = 196L;
         log.info(replyRepository.getReplyCountOfMiniBoard(mbNo));
+        int count = replyRepository.getReplyCountOfMiniBoard(mbNo);
+        int lastPage = (int)(Math.ceil(count/10.0));
+
+        if(lastPage ==0){
+            lastPage =1;
+        }
+
+        Pageable pageable = PageRequest.of(lastPage-1, 10);
+        Page<Reply> result = replyRepository.getListByMbNo(mbNo, pageable);
+
+        log.info("total:"+result.getTotalElements());
+        log.info("..."+result.getTotalPages());
+
+        result.get().forEach(reply->{
+            log.info(reply);
+        });
+
+
     }
 
 }

@@ -60,8 +60,9 @@ public class MiniBoardServiceImpl implements MiniBoardService {
     }
 
     @Override
-    public MiniBoardDTO read(Long bNum) {
-        Optional<MiniBoard> result = miniBoardRepository.findById(bNum);
+    public MiniBoardDTO read(Long mbNo) {
+
+        Optional<MiniBoard> result = miniBoardRepository.findById(mbNo);
 
         if(result.isEmpty()){
             throw new RuntimeException("NOT FOUND");
@@ -89,9 +90,9 @@ public class MiniBoardServiceImpl implements MiniBoardService {
     }
 
     @Override
-    public void delete(Long bNum) {
+    public void delete(Long mbNo) {
 
-        miniBoardRepository.deleteById(bNum);
+        miniBoardRepository.deleteById(mbNo);
     }
 
     @Override

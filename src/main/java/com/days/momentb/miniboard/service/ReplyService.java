@@ -9,4 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ReplyService {
 
     PageResponseDTO<ReplyDTO> getListOfBoard (Long mbNo, PageRequestDTO pageRequestDTO);
+
+    Long register(ReplyDTO replyDTO);
 }

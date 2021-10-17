@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -45,8 +46,9 @@ public class MiniBoardController {
 
     @GetMapping("/read")
     public void read(Long mbNo, PageRequestDTO pageRequestDTO, Model model){
-        model.addAttribute("dto", miniBoardService.read(mbNo));
 
+        log.info("controller의 숫자는 잘받았나"+mbNo);
+        model.addAttribute("dto", miniBoardService.read(mbNo));
     }
 
 

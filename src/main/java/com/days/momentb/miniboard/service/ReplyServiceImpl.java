@@ -31,8 +31,18 @@ public class ReplyServiceImpl implements ReplyService{
         log.info(mbNo);
         log.info(pageRequestDTO);
 
-        Pageable pageable = PageRequest.of(pageRequestDTO.getPage() -1, pageRequestDTO.getSize(),
-                Sort.by("mbReNo").descending());
+        Pageable pageable = null;
+
+        if(pageRequestDTO.getPage() == -1){
+            int lastPage = calcLastPage(mbNo, pageRequestDTO.getSize());
+            if(lastPage<=0){
+                lastPage =1;
+            }
+            pageRequestDTO.setPage(lastPage);
+        }
+        pageable = PageRequest.of(pageRequestDTO.getPage()-1, pageRequestDTO.getSize() );
+
+
 
         Page<Reply> result = replyRepository.getListByMbNo(mbNo,pageable);
 
@@ -46,5 +56,21 @@ public class ReplyServiceImpl implements ReplyService{
         return new PageResponseDTO<>(pageRequestDTO,(int)result.getTotalElements(),dtoList);
     }
 
+    @Override
+    public Long register(ReplyDTO replyDTO) {
+
+        Reply reply = modelMapper.map(replyDTO, Reply.class);
+      //  reply.getMiniBoard();
+       // log.info(reply);
+        replyRepository.save(reply);
+        return reply.getMbReNo();
+    }
+
+    private int calcLastPage(Long mbNo, double size){
+        int count = replyRepository.getReplyCountOfMiniBoard(mbNo);
+        int lastPage = (int)(Math.ceil(count/size));
+
+        return lastPage;
+    }
 
 }

@@ -14,11 +14,11 @@ public interface MiniBoardService {
 
     PageResponseDTO<MiniBoardDTO> getList(PageRequestDTO pageRequestDTO);
 
-    MiniBoardDTO read(Long bNum);
+    MiniBoardDTO read(Long mbNo);
 
     void modify(MiniBoardDTO miniBoardDTO);
 
-    void delete(Long bNum);
+    void delete(Long mbNo);
 
     PageResponseDTO<MiniBoardListDTO> getListWithReply(PageRequestDTO pageRequestDTO);
 
