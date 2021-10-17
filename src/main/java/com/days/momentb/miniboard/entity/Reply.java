@@ -21,12 +21,14 @@ public class Reply {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mbReNo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private MiniBoard miniBoard;
 
     private String mbReContent;
 
     private String mbReWriter;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MiniBoard miniBoard;
+
 
     @CreationTimestamp
     private LocalDateTime mbReRegDate;
@@ -37,6 +39,10 @@ public class Reply {
     private Long originReNo;
 
     private Long reDepth;
+
+    public void setText(String text){
+        this.mbReContent = text;
+    }
 
 
 }

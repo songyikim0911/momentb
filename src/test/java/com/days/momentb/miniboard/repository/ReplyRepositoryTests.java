@@ -6,6 +6,10 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -59,6 +63,20 @@ public class ReplyRepositoryTests {
         Reply reply = replyRepository.findById(rn).get();
         log.info(reply);
         log.info(reply.getMiniBoard());
+    }
+
+    @Test
+    public void testListOfBoard(){
+        Pageable pageable = PageRequest.of(0,10, Sort.by("mbReNo").descending());
+        Page<Reply> result = replyRepository.getListByMbNo(197L,pageable);
+        log.info(result.getTotalElements());
+        result.get().forEach(reply->log.info(reply));
+    }
+
+    @Test
+    public void testCountOfBoard(){
+        Long mbNo = 196L;
+        log.info(replyRepository.getReplyCountOfMiniBoard(mbNo));
     }
 
 }

@@ -22,6 +22,8 @@ public class MiniBoard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mbNo;
 
+    private String mbTitle;
+
     private String mbContent;
 
     private String mbWriter;
@@ -32,9 +34,6 @@ public class MiniBoard {
     @UpdateTimestamp
     private LocalDateTime mbModDate;
 
-    private Long mbReCount;
-
-    private String mbTitle;
 
     public void change(String mbContent, String mbTitle){
         this.mbContent = mbContent;

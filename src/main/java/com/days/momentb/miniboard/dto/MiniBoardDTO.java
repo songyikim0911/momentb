@@ -20,6 +20,8 @@ public class MiniBoardDTO {
 
     private Long mbNo;
 
+    private String mbTitle;
+
     private String mbContent;
 
     private String mbWriter;
@@ -27,10 +29,6 @@ public class MiniBoardDTO {
     private LocalDateTime mbRegDate;
 
     private LocalDateTime mbModDate;
-
-    private Long mbReCount;
-
-    private String mbTitle;
 
 
 

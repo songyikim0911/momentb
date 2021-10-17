@@ -3,6 +3,7 @@ package com.days.momentb.miniboard.service;
 import com.days.momentb.common.dto.PageRequestDTO;
 import com.days.momentb.common.dto.PageResponseDTO;
 import com.days.momentb.miniboard.dto.MiniBoardDTO;
+import com.days.momentb.miniboard.dto.MiniBoardListDTO;
 import com.days.momentb.miniboard.entity.MiniBoard;
 import com.days.momentb.miniboard.repository.MiniBoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,5 +92,34 @@ public class MiniBoardServiceImpl implements MiniBoardService {
     public void delete(Long bNum) {
 
         miniBoardRepository.deleteById(bNum);
+    }
+
+    @Override
+    public PageResponseDTO<MiniBoardListDTO> getListWithReply(PageRequestDTO pageRequestDTO) {
+        char[] typeArr = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+
+        Pageable pageable = PageRequest.of(pageRequestDTO.getPage()-1,
+                pageRequestDTO.getSize(),
+                Sort.by("bno").descending());
+
+        Page<Object[]> result = miniBoardRepository.searchWithReplyCount(typeArr, keyword, pageable);
+
+        List<MiniBoardListDTO> dtoList = result.get().map(objects->{
+
+            MiniBoardListDTO listDTO = MiniBoardListDTO.builder()//연관관계가 많을때 추천되는방법임.
+                    .mbNo((Long)objects[0])
+                    .mbTitle((String)objects[1])
+                    .mbWriter((String)objects[2])
+                    .mbRegDate((LocalDateTime)objects[3])
+                    .mbReCount((Long)objects[4])
+                    .build();
+
+            return listDTO;
+        }).collect(Collectors.toList());
+
+        //boardList가 배열 이어서, 매칭이 안되서 modelmapper는 못쓰므로 노가다가 필요함
+
+        return new PageResponseDTO<>(pageRequestDTO, (int)result.getTotalElements(), dtoList);
     }
 }
