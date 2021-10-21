@@ -62,6 +62,8 @@ public class ReplyServiceImpl implements ReplyService{
         Reply reply = modelMapper.map(replyDTO, Reply.class);
       //  reply.getMiniBoard();
        // log.info(reply);
+        log.info("replyserviceimpl로그..."+reply);
+        log.info("replyServiceimpl로그...2"+reply.getMiniBoard());
         replyRepository.save(reply);
         return reply.getMbReNo();
     }

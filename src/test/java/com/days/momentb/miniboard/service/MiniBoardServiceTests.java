@@ -27,8 +27,8 @@ public class MiniBoardServiceTests {
                     .mbTitle("title..."+i)
                     .build();
 
-            Long bNum = miniBoardService.register(miniBoardDTO);
-            log.info("bNum:" + miniBoardDTO.getMbNo());
+            Long mbNo = miniBoardService.register(miniBoardDTO);
+            log.info("mbNo:" + miniBoardDTO.getMbNo());
         });
 
     }

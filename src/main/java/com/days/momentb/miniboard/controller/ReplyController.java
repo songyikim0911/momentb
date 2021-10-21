@@ -28,6 +28,8 @@ public class ReplyController {
     @PostMapping("")
     public PageResponseDTO<ReplyDTO> register(@RequestBody ReplyDTO replyDTO){
 
+        log.info("registerController로그..."+replyDTO);
+        log.info("registerController로그..."+ replyDTO.getMbNo());
         replyService.register(replyDTO);
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(-1).build();

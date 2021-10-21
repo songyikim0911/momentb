@@ -29,6 +29,8 @@ public class ReplyDTO {
 
     private LocalDateTime mbReModDate;
 
+    private Long originReNo;
 
+    private Long reDepth;
 
 }

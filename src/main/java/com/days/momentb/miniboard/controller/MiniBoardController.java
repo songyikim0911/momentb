@@ -47,7 +47,6 @@ public class MiniBoardController {
     @GetMapping("/read")
     public void read(Long mbNo, PageRequestDTO pageRequestDTO, Model model){
 
-        log.info("controller의 숫자는 잘받았나"+mbNo);
         model.addAttribute("dto", miniBoardService.read(mbNo));
     }
 

@@ -14,8 +14,9 @@ public class RootConfig {
         modelMapper.getConfiguration()
                 .setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-                 .setMatchingStrategy(MatchingStrategies.STRICT);
-        //LOOSE -> STRICT 변경 문제 없을...까요?
+                .setAmbiguityIgnored(true)//추가
+                 .setMatchingStrategy(MatchingStrategies.LOOSE);
+
 
         return modelMapper;
     }
