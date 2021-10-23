@@ -14,4 +14,5 @@ public interface ReplyService {
 
     PageResponseDTO<ReplyDTO> remove (Long mbNo, Long mbReNo, PageRequestDTO pageRequestDTO);
 
+
 }
