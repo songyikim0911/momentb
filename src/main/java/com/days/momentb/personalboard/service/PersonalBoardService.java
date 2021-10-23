@@ -14,10 +14,10 @@ public interface PersonalBoardService {
 
     PageResponseDTO<PersonalBoardDTO> getList(PageRequestDTO pageRequestDTO);
 
-    PersonalBoardDTO read(Long bNum);
+    PersonalBoardDTO read(Long pbNo);
 
     void modify(PersonalBoardDTO personalBoardDTO);
 
-    void delete(Long bNum);
+    void delete(Long pbNo);
 
 }

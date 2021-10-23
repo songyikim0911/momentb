@@ -19,7 +19,7 @@ public class PersonalBoardServiceTests {
 
     @Test
     public void testModify(){
-        PersonalBoardDTO personalBoardDTO = PersonalBoardDTO.builder().bNum(200L).content("gg")
+        PersonalBoardDTO personalBoardDTO = PersonalBoardDTO.builder().pbNo(200L).pbContent("gg")
                 .build();
 
         personalBoardService.modify(personalBoardDTO);
@@ -30,12 +30,12 @@ public class PersonalBoardServiceTests {
 
         IntStream.rangeClosed(1,200).forEach(i->{
             PersonalBoardDTO personalBoardDTO = PersonalBoardDTO.builder()
-                    .content("content..."+i)
+                    .pbContent("content..."+i)
                     .memId("user"+(i%10))
                     .build();
 
-            Long bNum = personalBoardService.register(personalBoardDTO);
-            log.info("bNum:" + bNum);
+            Long pbNo = personalBoardService.register(personalBoardDTO);
+            log.info("pbNo:" + pbNo);
         });
 
     }

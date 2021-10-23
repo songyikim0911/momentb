@@ -34,10 +34,10 @@
             </thead>
             <tbody>
             <tr th:each="board:${responseDTO.dtoList}">
-                <th scope="row">[[${board.bNum}]]</th>
-                <td><a th:href="|javascript:movePage(${responseDTO.page}, ${board.bNum} )|">[[${board.content}]]</a> </td>
+                <th scope="row">[[${board.pbNo}]]</th>
+                <td><a th:href="|javascript:movePage(${responseDTO.page}, ${board.pbNo} )|">[[${board.pbContent}]]</a> </td>
                 <td>[[${ board.memId}]]</td>
-                <td>[[${#temporals.format(board.bRegDate, 'yyyy/MM/dd')}]]</td>
+                <td>[[${#temporals.format(board.pbRegDate, 'yyyy/MM/dd')}]]</td>
             </tr>
             </tbody>
         </table>
@@ -105,7 +105,7 @@
 
             const pageRequest = [[${pageRequestDTO}]]
 
-            function movePage(page, bNum) {
+            function movePage(page, pbNo) {
 
                 console.log(pageRequest)
 
@@ -119,8 +119,8 @@
                     searchQuery += `&type=${type}&keyword=${keyword}`
                 }
 
-                if(bNum) {
-                    uri = `/personalboard/read?bNum=${bNum}&page=${page}` + searchQuery
+                if(pbNo) {
+                    uri = `/personalboard/read?pbNo=${pbNo}&page=${page}` + searchQuery
                 }else {
                     uri = `/personalboard/list?page=${page}` + searchQuery
                 }

@@ -34,7 +34,7 @@ public class PersonalBoardSearchImpl extends QuerydslRepositorySupport implement
 
             for (char type : typeArr) {
                 if (type == 'T') {
-                    condition.or(qPersonalBoard.content.contains(keyword));
+                    condition.or(qPersonalBoard.pbContent.contains(keyword));
                 } else if (type == 'I') {
                     condition.or(qPersonalBoard.memId.contains(keyword));
                 }
@@ -43,7 +43,7 @@ public class PersonalBoardSearchImpl extends QuerydslRepositorySupport implement
             jpqlQuery.where(condition);
         }
 
-            jpqlQuery.where(personalBoard.bNum.gt(0L));
+            jpqlQuery.where(personalBoard.pbNo.gt(0L));
 
             JPQLQuery<PersonalBoard> pagingQuery =
                     this.getQuerydsl().applyPagination(pageable, jpqlQuery);

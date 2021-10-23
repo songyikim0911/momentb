@@ -29,7 +29,7 @@ public class PersonalBoardRepositoryTests {
     public void testSearch1(){
         char[] typeArr=null;
         String keyword=null;
-        Pageable pageable = PageRequest.of(0,10, Sort.by("bNum").descending());
+        Pageable pageable = PageRequest.of(0,10, Sort.by("pbNo").descending());
         Page<PersonalBoard> result = personalBoardRepository.search1(typeArr, keyword, pageable);
 
         result.get().forEach(personalBoard ->

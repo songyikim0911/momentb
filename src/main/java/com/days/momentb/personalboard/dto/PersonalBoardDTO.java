@@ -18,15 +18,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PersonalBoardDTO {
 
-    private Long bNum;
+    private Long pbNo;
 
-    private Long bPicCount;
+    private String pbContent;
 
-    private String content;
+    private LocalDateTime pbRegDate;
 
-    private LocalDateTime bRegDate;
-
-    private LocalDateTime bModDate;
+    private LocalDateTime pbModDate;
 
     private String memId;
 

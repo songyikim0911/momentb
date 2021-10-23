@@ -33,7 +33,7 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
         PersonalBoard personalBoard = modelMapper.map(personalBoardDTO, PersonalBoard.class);
         //2.insert
         personalBoardRepository.save(personalBoard);
-        return personalBoard.getBNum();
+        return personalBoard.getPbNo();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
 
         Pageable pageable = PageRequest.of(pageRequestDTO.getPage() - 1,
                 pageRequestDTO.getSize(),
-                Sort.by("bNum").descending());
+                Sort.by("pbNo").descending());
 
         Page<PersonalBoard> result = personalBoardRepository.search1(typeArr, keyword, pageable);
 
@@ -58,8 +58,8 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
     }
 
     @Override
-    public PersonalBoardDTO read(Long bNum) {
-        Optional<PersonalBoard> result = personalBoardRepository.findById(bNum);
+    public PersonalBoardDTO read(Long pbNo) {
+        Optional<PersonalBoard> result = personalBoardRepository.findById(pbNo);
 
         if(result.isEmpty()){
             throw new RuntimeException("NOT FOUND");
@@ -72,14 +72,14 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
     @Override
     public void modify(PersonalBoardDTO personalBoardDTO) {
 
-        Optional<PersonalBoard> result = personalBoardRepository.findById(personalBoardDTO.getBNum());
+        Optional<PersonalBoard> result = personalBoardRepository.findById(personalBoardDTO.getPbNo());
 
         if(result.isEmpty()){
             throw new RuntimeException("NOT FOUND");
         }
 
         PersonalBoard personalBoard = result.get();
-        personalBoard.change(personalBoardDTO.getContent());
+        personalBoard.change(personalBoardDTO.getPbContent());
 
         personalBoardRepository.save(personalBoard);
 
@@ -87,8 +87,8 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
     }
 
     @Override
-    public void delete(Long bNum) {
+    public void delete(Long pbNo) {
 
-        personalBoardRepository.deleteById(bNum);
+        personalBoardRepository.deleteById(pbNo);
     }
 }

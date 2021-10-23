@@ -36,17 +36,17 @@ public class personalBoardController {
     @PostMapping("/register")
     public String registerPost(PersonalBoardDTO personalBoardDTO, RedirectAttributes redirectAttributes){
 
-        Long bNum = personalBoardService.register(personalBoardDTO);
+        Long pbNo = personalBoardService.register(personalBoardDTO);
 
-        redirectAttributes.addFlashAttribute("",bNum);
+        redirectAttributes.addFlashAttribute("",pbNo);
 
         return "redirect:/personalboard/list";
     }
 
 
     @GetMapping("/read")
-    public void read(Long bNum, PageRequestDTO pageRequestDTO, Model model){
-        model.addAttribute("dto", personalBoardService.read(bNum));
+    public void read(Long pbNo, PageRequestDTO pageRequestDTO, Model model){
+        model.addAttribute("dto", personalBoardService.read(pbNo));
 
     }
 

@@ -20,22 +20,20 @@ public class PersonalBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bNum;
+    private Long pbNo;
 
-    private Long bPicCount;
-
-    private String content;
+    private String pbContent;
 
     @CreationTimestamp
-    private LocalDateTime bRegDate;
+    private LocalDateTime pbRegDate;
 
     @UpdateTimestamp
-    private LocalDateTime bModDate;
+    private LocalDateTime pbModDate;
 
     private String memId;
 
     public void change(String content){
-        this.content = content;
+        this.pbContent = pbContent;
     }
 
 
