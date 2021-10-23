@@ -11,4 +11,7 @@ public interface ReplyService {
     PageResponseDTO<ReplyDTO> getListOfBoard (Long mbNo, PageRequestDTO pageRequestDTO);
 
     Long register(ReplyDTO replyDTO);
+
+    PageResponseDTO<ReplyDTO> remove (Long mbNo, Long mbReNo, PageRequestDTO pageRequestDTO);
+
 }

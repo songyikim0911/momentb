@@ -68,6 +68,15 @@ public class ReplyServiceImpl implements ReplyService{
         return reply.getMbReNo();
     }
 
+    @Override
+    public PageResponseDTO<ReplyDTO> remove(Long mbNo, Long mbReNo, PageRequestDTO pageRequestDTO) {
+
+        replyRepository.deleteById(mbReNo);
+
+        return getListOfBoard(mbNo, pageRequestDTO);
+
+    }
+
     private int calcLastPage(Long mbNo, double size){
         int count = replyRepository.getReplyCountOfMiniBoard(mbNo);
         int lastPage = (int)(Math.ceil(count/size));

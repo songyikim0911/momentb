@@ -37,4 +37,13 @@ public class ReplyController {
         return replyService.getListOfBoard(replyDTO.getMbNo(), pageRequestDTO);
     }
 
+    @DeleteMapping("/{mbNo}/{mbReNo}")
+    public PageResponseDTO<ReplyDTO> remove(
+            @PathVariable("mbNo")Long mbNo,
+            @PathVariable("mbReNo")Long mbReNo,
+            PageRequestDTO pageRequestDTO){
+
+        return replyService.remove(mbNo, mbReNo, pageRequestDTO);
+    }
+
 }
