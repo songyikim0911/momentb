@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/layout2">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-<div class="card" layout:fragment="content">
+
+<div layout:fragment="content">
+
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="index.html">The Moment</a></li>
+                <li>Personal Board</li>
+            </ol>
+            <h2> Read </h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
 
     <div class="card">
         <div class="card-header">

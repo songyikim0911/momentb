@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/layout2">
+      layout:decorator="layout/layout">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +9,19 @@
 
 
 <div layout:fragment="content">
+
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="index.html">The Moment</a></li>
+                <li>Personal Board</li>
+            </ol>
+            <h2> Register </h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
     <div class="card-body">
 
         <div class="float-end" >

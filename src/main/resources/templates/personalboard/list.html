@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/layout2">
+      layout:decorator="layout/layout">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +9,20 @@
 
 
 <div layout:fragment="content">
+
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="index.html">The Moment</a></li>
+                <li>Personal Board</li>
+            </ol>
+            <h2> List </h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+
     <div class="card-body">
 
         <div class="float-end" >
@@ -17,7 +31,7 @@
                 <option value="T"  th:selected="${pageRequestDTO.type} =='T'">제목</option>
                 <option value="I"  th:selected="${pageRequestDTO.type} =='W'">작성자</option>
                 <option value="TI" th:selected="${pageRequestDTO.type} == 'TC'">제목/내용</option>
-              </select>
+            </select>
             <input type="text" id="keyword"  th:value="${pageRequestDTO.keyword}">
             <button id="searchBtn" class="btn btn-info" onclick="search()">Search</button>
         </div>
@@ -70,79 +84,79 @@
 </div>
 
 
-    <th:block  layout:fragment="script">
+<th:block  layout:fragment="script">
 
 
-        <div class="modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
-        <script th:inline="javascript">
+    <script th:inline="javascript">
 
-            const myModal = new bootstrap.Modal(document.querySelector(".modal"))
+        const myModal = new bootstrap.Modal(document.querySelector(".modal"))
 
-            const result = [[${result}]]
+        const result = [[${result}]]
 
-            if(result){
-                myModal.show()
+        if(result){
+            myModal.show()
+        }
+
+        const pageRequest = [[${pageRequestDTO}]]
+
+        function movePage(page, pbNo) {
+
+            console.log(pageRequest)
+
+            let uri ="";
+
+            const type = pageRequest.type
+            const keyword = pageRequest.keyword
+
+            let searchQuery = ''
+            if(type && keyword){
+                searchQuery += `&type=${type}&keyword=${keyword}`
             }
 
-            const pageRequest = [[${pageRequestDTO}]]
-
-            function movePage(page, pbNo) {
-
-                console.log(pageRequest)
-
-                let uri ="";
-
-                const type = pageRequest.type
-                const keyword = pageRequest.keyword
-
-                let searchQuery = ''
-                if(type && keyword){
-                    searchQuery += `&type=${type}&keyword=${keyword}`
-                }
-
-                if(pbNo) {
-                    uri = `/personalboard/read?pbNo=${pbNo}&page=${page}` + searchQuery
-                }else {
-                    uri = `/personalboard/list?page=${page}` + searchQuery
-                }
-                self.location = uri
+            if(pbNo) {
+                uri = `/personalboard/read?pbNo=${pbNo}&page=${page}` + searchQuery
+            }else {
+                uri = `/personalboard/list?page=${page}` + searchQuery
             }
+            self.location = uri
+        }
 
-            function search() {
-                const searchSelect = document.querySelector("#searchType")
+        function search() {
+            const searchSelect = document.querySelector("#searchType")
 
-                const type = searchSelect.options[searchSelect.selectedIndex].value
+            const type = searchSelect.options[searchSelect.selectedIndex].value
 
-                const keyword = encodeURI(document.querySelector("#keyword").value)
+            const keyword = encodeURI(document.querySelector("#keyword").value)
 
-                console.log("type", type, "keyword", keyword)
+            console.log("type", type, "keyword", keyword)
 
-                self.location =`/personalboard/list?page=1&type=${type}&keyword=${keyword}`
-            }
+            self.location =`/personalboard/list?page=1&type=${type}&keyword=${keyword}`
+        }
 
-        </script>
+    </script>
 
 
-    </th:block>
+</th:block>
 
 
 </body>
