@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/miniboard")
 public class MiniBoardController {
 
+
     private final MiniBoardService miniBoardService;
 
     @GetMapping("/list")
