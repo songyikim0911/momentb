@@ -23,34 +23,68 @@
     </section><!-- End Breadcrumbs -->
 
     <div class="card-header">
-            Board Register
-        </div>
-
-        <div class="card-body">
-            <form th:action="@{/personalboard/register}" method="post">
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Writer</span>
-                    <input type="text" name="writer" class="form-control" placeholder="Writer">
-                </div>
-
-                <div class="input-group">
-                    <span class="input-group-text">Content</span>
-                    <textarea class="form-control" aria-label="With textarea" name="pbContent" rows="4"></textarea>
-                </div>
-                <div class="">
-
-                </div>
-                <div class="">
-
-                </div>
-                <div class="my-4">
-                    <div class="float-end">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="result" class="btn btn-secondary">Reset</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        Board Register
     </div>
 
+    <div class="card-body">
+        <form th:action="@{/personalboard/register}" method="post">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Writer</span>
+                <input type="text" name="writer" class="form-control" placeholder="Writer">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text">Content</span>
+                <textarea class="form-control" aria-label="With textarea" name="pbContent" rows="4"></textarea>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text">해시 태그를 입력해주세요. (,로 구분하여 입력해주세요. 예) 태그1,태그2,태그3) </span>
+                <span contenteditable="true" type="text"  class="form-control tagInput" ></span>
+            </div>
+
+
+            <div class="my-4">
+                <div class="float-end hiddens">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="result" class="btn btn-secondary">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<th:block  layout:fragment="script">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:inline="javascript">
+
+
+        document.querySelector("button[type='submit']").addEventListener("click",function(e){
+
+            e.preventDefault()
+            e.stopPropagation()
+
+            const targetDiv = document.querySelector(".hiddens")
+
+            const hashTags = document.querySelector(".tagInput").innerHTML.split(",")
+
+            if(hashTags && hashTags.length > 0 && hashTags[0].trim() !== ''){
+                let tagStr =''
+                for(let i = 0; i < hashTags.length; i++){
+                    tagStr += "<input type='hidden' name='tags["+i+"]' value='"+ hashTags[i]+"'>"
+                }
+                targetDiv.innerHTML += tagStr
+            }
+
+            document.querySelector("form").submit()
+
+        },false)
+
+    </script>
+
+
+</th:block>
