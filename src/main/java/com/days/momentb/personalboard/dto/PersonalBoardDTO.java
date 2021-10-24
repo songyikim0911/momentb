@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -27,6 +28,8 @@ public class PersonalBoardDTO {
     private LocalDateTime pbModDate;
 
     private String memId;
+
+    private List<String> tags;
 
 
 
