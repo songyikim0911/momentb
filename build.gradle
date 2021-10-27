@@ -63,6 +63,16 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2','io.jsonwebtoken:jjwt-jackson:0.11.2'
 
 
+    // https://mvnrepository.com/artifact/com.google.cloud/google-cloud-vision
+    implementation group: 'com.google.cloud', name: 'google-cloud-vision', version: '2.0.14'
+    // https://mvnrepository.com/artifact/com.google.cloud/google-cloud-storage
+    implementation group: 'com.google.cloud', name: 'google-cloud-storage', version: '2.1.9'
+    // https://mvnrepository.com/artifact/com.google.cloud/spring-cloud-gcp-starter-vision
+    implementation group: 'com.google.cloud', name: 'spring-cloud-gcp-starter-vision', version: '2.0.4'
+    // https://mvnrepository.com/artifact/com.google.cloud/spring-cloud-gcp-starter-storage
+    implementation group: 'com.google.cloud', name: 'spring-cloud-gcp-starter-storage', version: '2.0.4'
+
+
 }
 
 
