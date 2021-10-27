@@ -52,6 +52,16 @@ dependencies {
             "javax.annotation:javax.annotation-api",
             "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
+    // https://mvnrepository.com/artifact/com.google.cloud/google-cloud-vision
+    implementation group: 'com.google.cloud', name: 'google-cloud-vision', version: '2.0.14'
+    // https://mvnrepository.com/artifact/com.google.cloud/google-cloud-storage
+    implementation group: 'com.google.cloud', name: 'google-cloud-storage', version: '2.1.9'
+    // https://mvnrepository.com/artifact/com.google.cloud/spring-cloud-gcp-starter-vision
+    implementation group: 'com.google.cloud', name: 'spring-cloud-gcp-starter-vision', version: '2.0.4'
+    // https://mvnrepository.com/artifact/com.google.cloud/spring-cloud-gcp-starter-storage
+    implementation group: 'com.google.cloud', name: 'spring-cloud-gcp-starter-storage', version: '2.0.4'
+
+
 }
 
 
