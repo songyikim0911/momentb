@@ -36,3 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 /src/main/resources/keys/my-project-m-51624-6c369a5d2161.json
+
+### api .json ###
+my-project-m-51624-6c369a5d2161.json
