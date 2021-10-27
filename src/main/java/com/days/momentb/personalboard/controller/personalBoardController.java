@@ -35,7 +35,8 @@ public class personalBoardController {
 
     @PostMapping("/register")
     public String registerPost(PersonalBoardDTO personalBoardDTO, RedirectAttributes redirectAttributes){
-
+        log.info("--controoller");
+        log.info(personalBoardDTO.getPictures());
         Long pbNo = personalBoardService.register(personalBoardDTO);
 
         redirectAttributes.addFlashAttribute("",pbNo);
