@@ -72,6 +72,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.cloud/spring-cloud-gcp-starter-storage
     implementation group: 'com.google.cloud', name: 'spring-cloud-gcp-starter-storage', version: '2.0.4'
 
+    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+
+
 
 }
 
