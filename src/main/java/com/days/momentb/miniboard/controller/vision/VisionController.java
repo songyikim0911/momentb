@@ -1,6 +1,5 @@
 package com.days.momentb.miniboard.controller.vision;
 
-import com.days.momentb.miniboard.dto.DataDTO;
 import com.google.cloud.spring.vision.CloudVisionTemplate;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.EntityAnnotation;
