@@ -241,8 +241,6 @@
                 str += "<input type='hidden' name='pictures["+i+"].fileName' value='"+jobj.getAttribute('data-filename')+"'>";
                 str += "<input type='hidden' name='pictures["+i+"].uuid' value='"+jobj.getAttribute('data-uuid')+"'>";
                 str += "<input type='hidden' name='pictures["+i+"].savePath' value='"+jobj.getAttribute("data-path")+"'>";
-                str += "<input type='hidden' name='pictures["+i+"].imageLabel' value='"+jobj.getAttribute("data-imagelabel")+"'>";
-
 
 
             }
@@ -295,7 +293,6 @@
 
                 const data = response.data
 
-                console.log(data)
 
                 showUploadFile(data)
 
@@ -311,23 +308,19 @@
 
         function showUploadFile(arr){
 
-            console.log('-------------arr-------------------')
-            console.log("arr: " + arr)
-            console.log(arr.uuid)
-
+            console.log('--------------------------------')
+            console.log(arr)
 
             let str = "";
 
             for(let i = 0; i < arr.length; i++){
 
                 const obj = arr[i];
-                console.log("obj : " + obj)
+
                 var fileCallPath =  encodeURIComponent( obj.savePath+ "/s_"+obj.uuid +"_"+obj.fileName)
 
-
-
                 str +=
-                    `<li data-path=${obj.savePath} data-uuid=${obj.uuid} data-filename=${obj.fileName} data-imagelabel=${obj.imageLabel}><div>
+                    `<li data-path=${obj.savePath} data-uuid=${obj.uuid} data-filename=${obj.fileName} ><div>
                   <span>${obj.fileName}</span>
                  <button type='button' data-file=${fileCallPath} data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>
                  <img src='/display?fileName=${fileCallPath}'>

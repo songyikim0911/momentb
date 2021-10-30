@@ -15,6 +15,8 @@ public class PersonalBoardPictureDTO {
 
     private String savePath;
 
+    private String imageLabel;
+
     private boolean selfDrawing;
 
     public String getLink(){

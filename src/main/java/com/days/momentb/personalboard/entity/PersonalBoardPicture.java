@@ -18,6 +18,7 @@ public class PersonalBoardPicture {
 
     private String savePath;
 
+    private String imageLabel;
 
     private boolean selfDrawing;
 

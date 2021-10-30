@@ -1,12 +1,19 @@
 package com.days.momentb.personalboard.controller;
 
 import com.days.momentb.personalboard.dto.PersonalBoardPictureDTO;
+import com.google.cloud.spring.vision.CloudVisionTemplate;
+import com.google.cloud.vision.v1.AnnotateImageResponse;
+import com.google.cloud.vision.v1.EntityAnnotation;
+import com.google.cloud.vision.v1.Feature;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -22,19 +30,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @Log4j2
+@RequiredArgsConstructor
 public class UploadController {
+
+	private final CloudVisionTemplate cloudVisionTemplate;
 
 	@Value("${com.days.upload.path}")
 	private String uploadPath;
 
 	@PostMapping("/uploadAjax")
-	public ResponseEntity<List<PersonalBoardPictureDTO>> uploadFile(MultipartFile[] uploadFiles){
+	public ResponseEntity<List<PersonalBoardPictureDTO>> uploadFile(MultipartFile[] uploadFiles) throws Exception {
 
 		List<PersonalBoardPictureDTO> resultDTOList = new ArrayList<>();
 
@@ -70,8 +80,12 @@ public class UploadController {
 				//섬네일 파일 이름은 중간에 s_로 시작하도록
 				File thumbnailFile = new File(thumbnailSaveName);
 				//섬네일 생성
-				Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,100,100 );
-				resultDTOList.add(new PersonalBoardPictureDTO(uuid, fileName, folderPath, false));
+				Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,405,335 );
+				String imageLabel = getImageLabel(saveName);
+				log.info("###################################");
+				log.info("###################################");
+				log.info("imageLabel : " + imageLabel);
+				resultDTOList.add(new PersonalBoardPictureDTO(uuid, fileName, folderPath, imageLabel, false));
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -132,11 +146,13 @@ public class UploadController {
 
 			File file = new File(uploadPath +File.separator+ srcFileName);
 
+			log.info("111111file: " + file);
+
 			if(size != null && size.equals("1")){
 				file  = new File(file.getParent(), file.getName().substring(2));
 			}
 
-			log.info("file: " + file);
+			log.info("222222file: " + file);
 
 			HttpHeaders header = new HttpHeaders();
 
@@ -148,8 +164,32 @@ public class UploadController {
 			log.error(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+			log.info(result);
 		return result;
 	}
 
+	private String getImageLabel(String fileName) throws Exception {
+
+		String srcFileName =  URLDecoder.decode(fileName,"UTF-8");
+
+
+		File file = new File(File.separator+ srcFileName);
+
+		log.info("Before file: " + file);
+
+		log.info("uploadPath : " + uploadPath);
+		log.info("srcFileName : " + srcFileName);
+
+		InputStreamResource inputStreamResource = new InputStreamResource(new FileInputStream(file));
+
+		AnnotateImageResponse response =
+				this.cloudVisionTemplate.analyzeImage(inputStreamResource, Feature.Type.LABEL_DETECTION);
+
+//			log.info(response.getLabelAnnotationsList().stream().collect(Collectors.toList()).get(0).getDescription());
+
+		String label = response.getLabelAnnotationsList().stream().collect(Collectors.toList()).get(0).getDescription();
+
+		return label;
+	}
 
 }
