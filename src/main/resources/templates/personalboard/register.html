@@ -142,10 +142,10 @@
                         <div>
                             <!-- 위도 및 경도 좌표 및 위치정보 -->
                             <input type="text" id="fulladdress" name="fulladdress" style="width:100%;" disabled readonly>
-                            <input type="text" id="pName" name="pName" value="" readonly>
-                            <input type="text" id="pAddress" name="pAddress" value="" readonly>
-                            <input type="text" id="pLat" name="pLat" value="" readonly>
-                            <input type="text" id="pLng" name="pLng" value="" readonly>
+                            <input type="text" id="pName" name="locations[0].pName" value="" readonly>
+                            <input type="text" id="pAddress" name="locations[0].pAddress" value="" readonly>
+                            <input type="text" id="pLat" name="locations[0].pLat" value="" readonly>
+                            <input type="text" id="pLng" name="locations[0].pLng" value="" readonly>
                         </div>
                     </div>
                 </div>
@@ -538,7 +538,7 @@ function removeAllChildNods(el) {
                 targetDiv.innerHTML += tagStr
             }
 
-            document.querySelector("form").submit()
+          document.querySelector("form").submit()
 
         },false)
 

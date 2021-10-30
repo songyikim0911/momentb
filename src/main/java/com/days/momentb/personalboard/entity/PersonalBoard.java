@@ -54,5 +54,14 @@ public class PersonalBoard {
 
 
 
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name="personal_board_location")
+    @Fetch(value = FetchMode.JOIN)
+    @BatchSize(size = 50)
+    private Set<PersonalBoardLocation> locations;
+
+
+
+
 
 }

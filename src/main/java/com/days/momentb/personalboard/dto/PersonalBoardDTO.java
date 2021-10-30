@@ -28,4 +28,6 @@ public class PersonalBoardDTO {
 
     private List<PersonalBoardPictureDTO> pictures;
 
+    private List<PersonalBoardLocationDTO> locations;
+
 }

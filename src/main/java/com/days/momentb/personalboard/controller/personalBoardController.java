@@ -37,6 +37,7 @@ public class personalBoardController {
     public String registerPost(PersonalBoardDTO personalBoardDTO, RedirectAttributes redirectAttributes){
         log.info("--controoller");
         log.info(personalBoardDTO.getPictures());
+        log.info(personalBoardDTO);
         Long pbNo = personalBoardService.register(personalBoardDTO);
 
         redirectAttributes.addFlashAttribute("",pbNo);
