@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -191,5 +192,59 @@ public class UploadController {
 
 		return label;
 	}
+
+	@PostMapping("/uploadCanvas")
+	public ResponseEntity<List<PersonalBoardPictureDTO>> uploadCanvasFile(@RequestParam(value="file", required=true) MultipartFile [] uploadFiles){
+
+		log.info("uploadControllerFile");
+		log.info(uploadFiles);
+
+		List<PersonalBoardPictureDTO> resultDTOList = new ArrayList<>();
+
+		for (MultipartFile uploadFile: uploadFiles) {
+
+			if(uploadFile.getContentType().startsWith("image") == false) {
+				log.warn("this file is not image type");
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+
+			//실제 파일 이름 IE나 Edge는 전체 경로가 들어오므로
+			String originalName = uploadFile.getOriginalFilename();
+			String fileName = originalName.substring(originalName.lastIndexOf("\\") + 1);
+
+			log.info("fileName: " + fileName);
+			//날짜 폴더 생성
+			String folderPath = makeFolder();
+
+			//UUID
+			String uuid = UUID.randomUUID().toString();
+
+			//저장할 파일 이름 중간에 "_"를 이용해서 구분
+			String saveName = uploadPath + File.separator + folderPath + File.separator + uuid +"_" + fileName;
+			Path savePath = Paths.get(saveName);
+
+			try {
+				//원본 파일 저장
+				uploadFile.transferTo(savePath);
+
+				//캔버스 이미지 생성
+				String thumbnailSaveName = uploadPath + File.separator + folderPath + File.separator
+						+"h_" + uuid +"_" + fileName;
+				//캔버스 이미지는 h_로 시작하도록
+				File thumbnailFile = new File(thumbnailSaveName);
+				String imageLabel = "handwriting";
+				//캔버스 이미지 생성
+				Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,405,335 );
+				resultDTOList.add(new PersonalBoardPictureDTO(uuid, fileName, folderPath, imageLabel,  false));
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}//end for
+		return new ResponseEntity<>(resultDTOList, HttpStatus.OK);
+	}
+
+
 
 }
