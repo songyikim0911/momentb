@@ -31,8 +31,10 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
     public Long register(PersonalBoardDTO personalBoardDTO) {
         //1.dto->vo
         log.info(personalBoardDTO.getLocations());
+        log.info(personalBoardDTO.getPictures());
         PersonalBoard personalBoard = modelMapper.map(personalBoardDTO, PersonalBoard.class);
         log.info(personalBoard.getLocations());
+        log.info(personalBoard.getPictures());
         //2.insert
         personalBoardRepository.save(personalBoard);
         return personalBoard.getPbNo();

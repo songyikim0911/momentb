@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = {"tags","pictures"})
+@ToString(exclude = {"tags","pictures","locations"})
 public class PersonalBoard {
 
     @Id

@@ -11,6 +11,7 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @Getter
 @ToString
+@EqualsAndHashCode(of="pName")
 public class PersonalBoardLocation {
 
 
