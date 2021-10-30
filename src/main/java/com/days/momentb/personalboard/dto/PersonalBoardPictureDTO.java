@@ -23,7 +23,4 @@ public class PersonalBoardPictureDTO {
         return savePath+"/s_"+uuid+"_"+fileName;
     }
 
-
-
-
 }
