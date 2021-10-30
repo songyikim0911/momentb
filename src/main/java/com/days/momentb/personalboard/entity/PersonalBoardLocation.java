@@ -1,6 +1,5 @@
 package com.days.momentb.personalboard.entity;
 
-
 import lombok.*;
 
 import javax.persistence.Embeddable;
@@ -11,17 +10,16 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @Getter
 @ToString
-@EqualsAndHashCode(of="pName")
+@EqualsAndHashCode(of="pbName")
 public class PersonalBoardLocation {
 
+    private String pbName;
 
-    private String pName;
+    private String pbAddress;
 
-    private String pAddress;
+    private String pbLat;
 
-    private String pLat;
-
-    private String pLng;
+    private String pbLng;
 
 
 

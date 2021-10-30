@@ -7,16 +7,16 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of="pName")
+@EqualsAndHashCode(of="pbName")
 public class PersonalBoardLocationDTO {
 
-    private String pName;
+    private String pbName;
 
-    private String pAddress;
+    private String pbAddress;
 
-    private String pLat;
+    private String pbLat;
 
-    private String pLng;
+    private String pbLng;
 
 }
 
