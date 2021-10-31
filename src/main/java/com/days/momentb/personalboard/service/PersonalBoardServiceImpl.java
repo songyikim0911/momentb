@@ -4,6 +4,7 @@ import com.days.momentb.common.dto.PageRequestDTO;
 import com.days.momentb.common.dto.PageResponseDTO;
 import com.days.momentb.personalboard.dto.PersonalBoardDTO;
 import com.days.momentb.personalboard.entity.PersonalBoard;
+import com.days.momentb.personalboard.entity.PersonalBoardLocation;
 import com.days.momentb.personalboard.repository.PersonalBoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -32,11 +33,29 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
         //1.dto->vo
         log.info(personalBoardDTO.getLocations());
         log.info(personalBoardDTO.getPictures());
+
         PersonalBoard personalBoard = modelMapper.map(personalBoardDTO, PersonalBoard.class);
+
+
+
+        //set->list변경필요
+//               PersonalBoard personalBoard = PersonalBoard.builder().
+//        pbNo(personalBoardDTO.getPbNo())
+//               .pbContent(personalBoardDTO.getPbContent())
+//               .pbRegDate(personalBoardDTO.getPbRegDate())
+//               .pbModDate(personalBoardDTO.getPbModDate())
+//               .memId(personalBoardDTO.getMemId())
+//               .tags(personalBoardDTO.getTags())
+//               .locations(personalBoardDTO.getLocations())
+//               .pictures(personalBoardDTO.getPictures())
+//        .build();
+
+
         log.info(personalBoard.getLocations());
         log.info(personalBoard.getPictures());
         //2.insert
         personalBoardRepository.save(personalBoard);
+
         return personalBoard.getPbNo();
     }
 
