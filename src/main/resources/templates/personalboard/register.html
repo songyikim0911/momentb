@@ -89,28 +89,30 @@
                         </div>
 
                         <!-- Contents -->
-                        <div class="col-lg-4" id="tagContent" >
 
-                            <div class="wrap-input1 validate-input" data-validate = "Subject is required" style="margin-top: 50px">
-                                <input class="input1" type="text" name="tag" placeholder="해시 태그를 입력해주세요 예) 태그1,태그2,태그3)">
-                                <span class="shadow-input1"></span>
-                            </div>
+                        <div class="col-lg-5">
+                        <div class="wrap-input1 input-group">
+                            <span class="input-group-text"> 해시 태그 입력  (,로 구분하여 입력해주세요. 예) 태그1,태그2,태그3) </span>
+                            <span contenteditable="true" type="text"  class="input1 form-control tagInput" ></span>
+                            <span class="shadow-input1"></span>
+                        </div>
+
 
                             <div class="wrap-input1 validate-input" data-validate = "Message is required">
                                 <textarea class="input1" name="content" placeholder="내용" style="resize: none"></textarea>
                                 <span class="shadow-input1"></span>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
 
 
 
 
 <!--지도시작-->
                     <!-- folder-->
-
-                    <span id="faq-title">기능</span>
+                <br>
+                    <span id="faq-title">다양한 기능</span>
 
                     <div class="faq-content">
                         <button type="button" class="question" id="que-2"><span id="que-2-toggle">+</span><span>위치표시</span></button>
@@ -490,47 +492,11 @@ function removeAllChildNods(el) {
 
             console.log(targetDiv.innerHTML)
 
-          document.querySelector("form").submit()
+         document.querySelector("form").submit()
 
         },false)
 
 
-
-
-        inputFile.addEventListener("change",function(e){
-
-            var formData = new FormData()
-
-            var files = inputFile.files
-
-            for(var i = 0; i < files.length; i++){
-
-                console.log(files[i])
-
-                formData.append("uploadFiles", files[i]);
-
-            }
-
-            async function uploadData() {
-
-                const response = await axios.post('/uploadAjax', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-
-                const data = response.data
-
-                console.log(data)
-
-                showUploadFile(data)
-
-            }
-
-            uploadData()
-
-
-        },false)
 
 
 
