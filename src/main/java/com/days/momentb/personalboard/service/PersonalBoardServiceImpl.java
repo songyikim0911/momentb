@@ -36,21 +36,6 @@ public class PersonalBoardServiceImpl implements PersonalBoardService{
 
         PersonalBoard personalBoard = modelMapper.map(personalBoardDTO, PersonalBoard.class);
 
-
-
-        //set->list변경필요
-//               PersonalBoard personalBoard = PersonalBoard.builder().
-//        pbNo(personalBoardDTO.getPbNo())
-//               .pbContent(personalBoardDTO.getPbContent())
-//               .pbRegDate(personalBoardDTO.getPbRegDate())
-//               .pbModDate(personalBoardDTO.getPbModDate())
-//               .memId(personalBoardDTO.getMemId())
-//               .tags(personalBoardDTO.getTags())
-//               .locations(personalBoardDTO.getLocations())
-//               .pictures(personalBoardDTO.getPictures())
-//        .build();
-
-
         log.info(personalBoard.getLocations());
         log.info(personalBoard.getPictures());
         //2.insert

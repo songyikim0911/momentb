@@ -1,6 +1,7 @@
 package com.days.momentb.personalboard.repository.search;
 
 import com.days.momentb.personalboard.entity.PersonalBoard;
+import com.days.momentb.personalboard.entity.PersonalBoardPicture;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

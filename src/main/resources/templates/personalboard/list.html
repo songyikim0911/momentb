@@ -29,9 +29,9 @@
                 <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-app">App</li>
+                        <li data-filter='${board.pbNo}'>App</li>
                         <li data-filter=".filter-cat">Cat</li>
-                        <li data-filter=".filter-web">Web</li>
+                        <li data-filter=".filter-cat.value">Web</li>
                         <li data-filter=".filter-app">Animal</li>
                         <li data-filter=".filter-card">Landscape</li>
                     </ul>
@@ -59,12 +59,9 @@
 
 
                 <select id="searchType"  >
-                    <option value="T"  th:selected="${pageRequestDTO.type} =='T'">제목</option>
-                    <option value="C"  th:selected="${pageRequestDTO.type} =='C'">내용</option>
-                    <option value="W"  th:selected="${pageRequestDTO.type} =='W'">작성자</option>
-                    <option value="TC" th:selected="${pageRequestDTO.type} == 'TC'">제목/내용</option>
-                    <option value="TCW" th:selected="${pageRequestDTO.type} == 'TCW'" >제목 혹은 내용 혹은 작성자</option>
-                    <option value="R" th:selected="${pageRequestDTO.type} == 'R'" >댓글내용</option>
+                    <option value="C"  th:selected="${pageRequestDTO.type} =='CW'" >내용</option>
+                    <option value="T"  th:selected="${pageRequestDTO.type} =='T'" >작성자</option>
+                    <option value="I" th:selected="${pageRequestDTO.type} == 'I'" >이미지라벨</option>
                 </select>
                 <input type="text" id="keyword"  th:value="${pageRequestDTO.keyword}">
                 <button id="searchBtn" class="btn btn-info" onclick="search()">Search</button>

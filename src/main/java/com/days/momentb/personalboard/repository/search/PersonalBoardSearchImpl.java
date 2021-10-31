@@ -1,8 +1,11 @@
 package com.days.momentb.personalboard.repository.search;
 
 import com.days.momentb.personalboard.entity.PersonalBoard;
+import com.days.momentb.personalboard.entity.PersonalBoardPicture;
 import com.days.momentb.personalboard.entity.QPersonalBoard;
+import com.days.momentb.personalboard.entity.QPersonalBoardPicture;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.SetPath;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.*;
@@ -28,14 +31,13 @@ public class PersonalBoardSearchImpl extends QuerydslRepositorySupport implement
         JPQLQuery<PersonalBoard> jpqlQuery = from(qPersonalBoard);
 
 
-
         if(typeArr!= null&&typeArr.length>0) {
             BooleanBuilder condition = new BooleanBuilder();
 
             for (char type : typeArr) {
-                if (type == 'T') {
+                if (type == 'C') {
                     condition.or(qPersonalBoard.pbContent.contains(keyword));
-                } else if (type == 'I') {
+                } else if (type == 'W') {
                     condition.or(qPersonalBoard.memId.contains(keyword));
                 }
             }
@@ -55,4 +57,5 @@ public class PersonalBoardSearchImpl extends QuerydslRepositorySupport implement
         return new PageImpl<>(personalBoardList, pageable, totalCount);
 
     }
+
 }
