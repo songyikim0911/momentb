@@ -9,6 +9,42 @@
 # KAKAO MAP
  -----------------------------------------------------------*/
 
+/*-------
+Read flipping
+ */
+.spinning{
+  width:150px;
+  height:200px;
+  perspecitve:300px;
+}
+
+.spinning .item{
+  width:150px;
+  height: 200px;
+  border:1px solid #828282;
+  font-size:35px;
+  backface-visibility: hidden;
+  transition:1s;
+}
+.spinning .item.front{
+  position:absolute;
+  transform: rotateY(0deg);
+}
+.spinning:hover .item.front{
+  transform:rotateY(180deg);
+}
+
+.spinning .item.back{
+  transform:rotateY(-180deg);
+}
+
+.spinning:hover .item.back{
+  transform:rotateY(0deg);
+}
+
+
+
+
 
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}

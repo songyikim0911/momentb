@@ -118,7 +118,7 @@ function showUploadCanvas(arr){
         str +=
             `<li data-path=${obj.savePath} data-uuid=${obj.uuid} data-filename=${obj.fileName} data-selfdrawing="true"><div>
                   <span>${obj.fileName}</span>
-                 <button type='button' data-file=${fileCallPath} data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>
+                 <button type='button'  data-file=${fileCallPath} data-imagelabel="handwriting" data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>
                  <img src='/display?fileName=${fileCallPath}'>
                  </div>
                  </li>`

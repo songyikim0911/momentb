@@ -232,7 +232,7 @@ public class UploadController {
 				File thumbnailFile = new File(thumbnailSaveName);
 				String imageLabel = "handwriting";
 				//캔버스 이미지 생성
-				Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,405,335 );
+				Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,350,350 );
 				resultDTOList.add(new PersonalBoardPictureDTO(uuid, fileName, folderPath, imageLabel,  false));
 
 			} catch (IOException e) {

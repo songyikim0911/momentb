@@ -77,14 +77,18 @@
 
             <div class="row">
 
-                <!-- file -->
-                <div class="col-lg-5">
-                    <article>
-                        <div id="holder"></div>
-                        <p id="status"></p>
-                    </article>
-                </div>
-
+                <!-- image -->
+                      <div class="spinning">
+                            <!--image-->
+                          <div class="item front">
+                              <img th:each="picture:${dto.pictures}"  th:if="${picture.selfDrawing == false}" th:src="@{/display(fileName=${picture.getLink()})}">
+                          </div>
+                        <!--handwriting-->
+                          <div class="item back">
+                            <img th:each="picture:${dto.pictures}"  th:if="${picture.selfDrawing == true}" th:src="@{/display(fileName=${picture.getHandWritingLink()})}">
+                            </div>
+                        </div>
+<!--image--></div>
                 <!-- Contents -->
                 <div class="col-lg-4" id="tagContent" >
 
