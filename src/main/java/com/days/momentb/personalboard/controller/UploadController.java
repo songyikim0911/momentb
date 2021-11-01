@@ -230,10 +230,11 @@ public class UploadController {
 						+"h_" + uuid +"_" + fileName;
 				//캔버스 이미지는 h_로 시작하도록
 				File thumbnailFile = new File(thumbnailSaveName);
-				String imageLabel = "handwriting";
+				String imageLabel = "HandWriting";
+				log.info(imageLabel);
 				//캔버스 이미지 생성
 				Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,350,350 );
-				resultDTOList.add(new PersonalBoardPictureDTO(uuid, fileName, folderPath, imageLabel,  false));
+				resultDTOList.add(new PersonalBoardPictureDTO(uuid, fileName, folderPath, "HandWriting",  false));
 
 			} catch (IOException e) {
 				e.printStackTrace();
