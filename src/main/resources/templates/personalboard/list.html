@@ -41,7 +41,7 @@
                 <div class="row portfolio-container">
                     <tr th:each="board:${responseDTO.dtoList}">
                         <div class="col-lg-4 col-md-6 portfolio-item filter-cat" id=${board.pbNo}>
-                            <div class="portfolio-wrap" style="text-align: center">
+                            <div class="portfolio-wrap" style="text-align: center; width: 350px; height: 350px">
                                 <img th:each="picture:${board.pictures}" th:src="@{/display(fileName=${picture.getLink()})}" class="img-fluid" th:title="${picture.imageLabel}" alt="">
                                 <div class="portfolio-info" th:onclick="'location.href=\''+|javascript:movePage(${responseDTO.page}, ${board.pbNo})|+'\''" style="cursor:pointer;">
                                     <h4 th:each="tag:${board.tags}">[[|#${tag}]]</h4>
@@ -59,9 +59,8 @@
 
 
                 <select id="searchType"  >
-                    <option value="C"  th:selected="${pageRequestDTO.type} =='CW'" >내용</option>
+                    <option value="C"  th:selected="${pageRequestDTO.type} =='C'" >내용</option>
                     <option value="T"  th:selected="${pageRequestDTO.type} =='T'" >작성자</option>
-                    <option value="I" th:selected="${pageRequestDTO.type} == 'I'" >이미지라벨</option>
                 </select>
                 <input type="text" id="keyword"  th:value="${pageRequestDTO.keyword}">
                 <button id="searchBtn" class="btn btn-info" onclick="search()">Search</button>
@@ -139,6 +138,24 @@
                         console.log("type", type, "keyword", keyword)
 
                         self.location =`/personalboard/list?page=1&type=${type}&keyword=${keyword}`
+                    }
+
+
+                    function setCategory(e, category){
+                        e.preventDefault()
+                        e.stopPropagation()
+
+                        // alert(category)
+
+                        const filteredStores = stores.filter(store => {
+                            if(category === 'ALL'){
+                                return true
+                            }
+                            return store.cat === category
+                        })
+                        console.log(filteredStores)
+
+                        makeList(filteredStores)
                     }
 
                 </script>
