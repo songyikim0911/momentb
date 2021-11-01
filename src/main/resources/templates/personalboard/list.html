@@ -41,7 +41,7 @@
                 <div class="row portfolio-container">
                     <tr th:each="board:${responseDTO.dtoList}">
                         <div class="col-lg-4 col-md-6 portfolio-item filter-cat" id=${board.pbNo}>
-                            <div class="portfolio-wrap" style="text-align: center; width: 350px; height: 350px">
+                            <div class="portfolio-wrap" style="text-align: center; width: 350px; height: 350px; border-style: dotted; border-color: #5c636a">
                                 <img th:each="picture:${board.pictures}" th:src="@{/display(fileName=${picture.getLink()})}" class="img-fluid" th:title="${picture.imageLabel}" alt="">
                                 <div class="portfolio-info" th:onclick="'location.href=\''+|javascript:movePage(${responseDTO.page}, ${board.pbNo})|+'\''" style="cursor:pointer;">
                                     <h4 th:each="tag:${board.tags}">[[|#${tag}]]</h4>
