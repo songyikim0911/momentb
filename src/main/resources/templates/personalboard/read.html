@@ -58,6 +58,7 @@
     <link rel="stylesheet" th:href="@{/assets/css/textarea.css}">
 
     <section id="breadcrumbs" class="breadcrumbs">
+
         <div class="container">
 
             <ol>
@@ -69,26 +70,28 @@
         </div>
     </section><!-- End Breadcrumbs -->
 
-    <div class="card">
+    <div class="container">
         <div class="card-header">
             Board Read
         </div>
         <div class="card-body">
 
-            <div class="row">
+            <div class="row" style="margin-bottom: 80px" >
 
                 <!-- image -->
+                <div class="col-lg-5">
                       <div class="spinning">
                             <!--image-->
-                          <div class="item front">
+                          <div class="pic front">
                               <img th:each="picture:${dto.pictures}"  th:if="${picture.selfDrawing == false}" th:src="@{/display(fileName=${picture.getLink()})}">
                           </div>
                         <!--handwriting-->
-                          <div class="item back">
+                          <div class="pic back">
                             <img th:each="picture:${dto.pictures}"  th:if="${picture.selfDrawing == true}" th:src="@{/display(fileName=${picture.getHandWritingLink()})}">
                             </div>
                         </div>
 <!--image--></div>
+
                 <!-- Contents -->
                 <div class="col-lg-4" id="tagContent" >
 
@@ -98,16 +101,10 @@
                         <span class="shadow-input1"></span>
                     </div>
 
-                    <div class="wrap-input1 validate-input" data-validate = "Message is required">
-                        <input class="input1" type="text" name="memId" readonly placeholder="작성자"
-                               th:value="${dto.memId}">
-                        <span class="shadow-input1"></span>
-                    </div>
-
-                    <div class="wrap-input1 validate-input" data-validate = "Subject is required" style="margin-top: 50px">
-                        <input class="input1" type="text" name="tag" readonly placeholder="태그"
-                              th:value="${dto.tags}">
-                        <span class="shadow-input1"></span>
+                    <div class="wrap-input2 validate-input" data-validate = "Subject is required">
+                        <ul style="display: flex;">
+                            <li class="input2" style="border-radius: 25px; padding: 20px; margin-inline: 10px " th:each="tag:${dto.tags}">[[|#${tag}]]</li>
+                        </ul>
                     </div>
 
                     <div class="wrap-input1 validate-input" data-validate = "Message is required">
@@ -135,7 +132,8 @@
                 </div>
 
             </div>
-        </div>
+
+            </div>
     </div>
     <!-- end card-->
 

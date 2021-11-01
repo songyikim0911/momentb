@@ -18,27 +18,26 @@ Read flipping
   perspecitve:300px;
 }
 
-.spinning .item{
+.spinning .pic{
   width:150px;
   height: 200px;
-  border:1px solid #828282;
   font-size:35px;
   backface-visibility: hidden;
   transition:1s;
 }
-.spinning .item.front{
+.spinning .pic.front{
   position:absolute;
   transform: rotateY(0deg);
 }
-.spinning:hover .item.front{
+.spinning:hover .pic.front{
   transform:rotateY(180deg);
 }
 
-.spinning .item.back{
+.spinning .pic.back{
   transform:rotateY(-180deg);
 }
 
-.spinning:hover .item.back{
+.spinning:hover .pic.back{
   transform:rotateY(0deg);
 }
 
