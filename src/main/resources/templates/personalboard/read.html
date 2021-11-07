@@ -71,7 +71,7 @@
     </section><!-- End Breadcrumbs -->
 
     <div class="container">
-        <div class="card-header">
+        <div class="card-header" style="margin-bottom: 30px;">
             Board Read
         </div>
         <div class="card-body">
@@ -108,7 +108,7 @@
                     </div>
 
                     <div class="wrap-input1 validate-input" data-validate = "Message is required">
-                        <textarea class="input1" name="content"  style="resize: none" disabled placeholder="내용">[[${dto.pbContent}]]</textarea>
+                        <textarea class="input1" name="pbContent"  style="resize: none" disabled th:value="${dto.pbContent}">[[${dto.pbContent}]]</textarea>
                         <span class="shadow-input1"></span>
                     </div>
                 </div>
