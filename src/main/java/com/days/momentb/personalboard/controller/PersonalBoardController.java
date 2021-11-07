@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/personalboard")
-public class personalBoardController {
+public class PersonalBoardController {
 
     private final PersonalBoardService personalBoardService;
 
@@ -35,7 +35,7 @@ public class personalBoardController {
 
     @PostMapping("/register")
     public String registerPost(PersonalBoardDTO personalBoardDTO, RedirectAttributes redirectAttributes){
-        log.info("--controoller");
+        log.info("--controller");
         log.info(personalBoardDTO.getPictures());
         log.info(personalBoardDTO.getLocations());
         Long pbNo = personalBoardService.register(personalBoardDTO);
